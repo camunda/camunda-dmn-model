@@ -35,4 +35,8 @@ public class DmnModelInstanceImpl extends ModelInstanceImpl implements DmnModelI
     setDocumentElement(definitions);
   }
 
+  public DmnModelInstance clone() {
+    return new DmnModelInstanceImpl(model, modelBuilder, document.clone());
+  }
+
 }
