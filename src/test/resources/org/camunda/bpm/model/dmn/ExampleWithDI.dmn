@@ -25,7 +25,7 @@
       <requiredAuthority href="#host_ks"/>
     </authorityRequirement>
     <decisionTable id="dishDecisionTable">
-    <input id="seasonInput" label="Season">
+      <input id="seasonInput" label="Season">
         <inputExpression id="seasonInputExpression" typeRef="string">
           <text>season</text>
         </inputExpression>
@@ -180,29 +180,29 @@
   </decision>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram id="_di1">
-     <dmndi:DMNShape id="_di2" dmnElementRef="dish">
+      <dmndi:DMNShape id="_di2" dmnElementRef="dish">
         <dc:Bounds x="150" y="10" width="100" height="55" />
       </dmndi:DMNShape>
-    <dmndi:DMNShape id="_di3" dmnElementRef="season">
+      <dmndi:DMNShape id="_di3" dmnElementRef="season">
         <dc:Bounds x="10" y="140" width="140" height="55" />
       </dmndi:DMNShape>
-    <dmndi:DMNShape id="_di4" dmnElementRef="guestCount">
+      <dmndi:DMNShape id="_di4" dmnElementRef="guestCount">
         <dc:Bounds x="230" y="140" width="210" height="55" />
       </dmndi:DMNShape>
-    <dmndi:DMNShape id="_di5" dmnElementRef="temperature_id">
+      <dmndi:DMNShape id="_di5" dmnElementRef="temperature_id">
         <dc:Bounds x="5" y="270" width="170" height="90" />
       </dmndi:DMNShape>
-    <dmndi:DMNShape id="_di6" dmnElementRef="dayType_id">
+      <dmndi:DMNShape id="_di6" dmnElementRef="dayType_id">
         <dc:Bounds x="240" y="270" width="200" height="60" />
       </dmndi:DMNShape>
-    <dmndi:DMNShape id="_di7" dmnElementRef="host_ks">
+      <dmndi:DMNShape id="_di7" dmnElementRef="host_ks">
         <dc:Bounds x="495" y="10" width="120" height="75" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="_di8" dmnElementRef="season_ir">
         <di:waypoint xsi:type="dc:Point" x="80" y="140" />
         <di:waypoint xsi:type="dc:Point" x="205" y="65" />
       </dmndi:DMNEdge>
-    <dmndi:DMNEdge id="_di9" dmnElementRef="guestCount_ir">
+      <dmndi:DMNEdge id="_di9" dmnElementRef="guestCount_ir">
         <di:waypoint xsi:type="dc:Point" x="345" y="140" />
         <di:waypoint xsi:type="dc:Point" x="205" y="65" />
       </dmndi:DMNEdge>
@@ -214,10 +214,10 @@
         <di:waypoint xsi:type="dc:Point" x="340" y="270" />
         <di:waypoint xsi:type="dc:Point" x="340" y="195" />
       </dmndi:DMNEdge>
-    <dmndi:DMNEdge id="_di12" dmnElementRef="host_ar">
+      <dmndi:DMNEdge id="_di12" dmnElementRef="host_ar">
         <di:waypoint xsi:type="dc:Point" x="495" y="30" />
         <di:waypoint xsi:type="dc:Point" x="250" y="30" />
-      </dmndi:DMNEdge>    
-  </dmndi:DMNDiagram>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
   </dmndi:DMNDI>
 </definitions>
