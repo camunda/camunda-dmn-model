@@ -15,13 +15,13 @@
   </inputData>
   <knowledgeSource name="Host" id="host_ks"/>
   <decision id="dish-decision" name="Dish Decision">
-    <informationRequirement>
+    <informationRequirement id="season_ir">
       <requiredDecision href="#season" />
     </informationRequirement>
-    <informationRequirement>
+    <informationRequirement id="guestCount_ir">
       <requiredDecision href="#guestCount" />
     </informationRequirement>
-  <authorityRequirement>
+    <authorityRequirement id="host_ar">
       <requiredAuthority href="#host_ks"/>
     </authorityRequirement>
     <decisionTable id="dishDecisionTable">
@@ -105,7 +105,7 @@
     </decisionTable>
   </decision>
   <decision id="season" name="Season decision">
-  <informationRequirement>
+    <informationRequirement id="temperature_ir">
       <requiredInput href="#temperature_id"/>
     </informationRequirement>
     <decisionTable id="seasonDecisionTable">
@@ -142,7 +142,7 @@
     </decisionTable>
   </decision>
   <decision id="guestCount" name="Guest Count">
-  <informationRequirement>
+    <informationRequirement id="dayType_ir">
       <requiredInput href="#dayType_id"/>
     </informationRequirement>
     <decisionTable id="guestCountDecisionTable">
@@ -198,23 +198,23 @@
     <dmndi:DMNShape id="_di7" dmnElementRef="host_ks">
         <dc:Bounds x="495" y="10" width="120" height="75" />
       </dmndi:DMNShape>
-      <dmndi:DMNEdge id="_di8" sourceDMNElementRef="season" targetDMNElementRef="dish">
+      <dmndi:DMNEdge id="_di8" dmnElementRef="season_ir">
         <di:waypoint xsi:type="dc:Point" x="80" y="140" />
         <di:waypoint xsi:type="dc:Point" x="205" y="65" />
       </dmndi:DMNEdge>
-    <dmndi:DMNEdge id="_di9" sourceDMNElementRef="guestCount" targetDMNElementRef="dish">
+    <dmndi:DMNEdge id="_di9" dmnElementRef="guestCount_ir">
         <di:waypoint xsi:type="dc:Point" x="345" y="140" />
         <di:waypoint xsi:type="dc:Point" x="205" y="65" />
       </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="_di10" sourceDMNElementRef="temperature_id" targetDMNElementRef="season">
+      <dmndi:DMNEdge id="_di10" dmnElementRef="temperature_ir">
         <di:waypoint xsi:type="dc:Point" x="80" y="270" />
         <di:waypoint xsi:type="dc:Point" x="80" y="195" />
       </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="_di11" sourceDMNElementRef="dayType_id" targetDMNElementRef="guestCount">
+      <dmndi:DMNEdge id="_di11" dmnElementRef="dayType_ir">
         <di:waypoint xsi:type="dc:Point" x="340" y="270" />
         <di:waypoint xsi:type="dc:Point" x="340" y="195" />
       </dmndi:DMNEdge>
-    <dmndi:DMNEdge id="_di12" sourceDMNElementRef="host_ks" targetDMNElementRef="dish">
+    <dmndi:DMNEdge id="_di12" dmnElementRef="host_ar">
         <di:waypoint xsi:type="dc:Point" x="495" y="30" />
         <di:waypoint xsi:type="dc:Point" x="250" y="30" />
       </dmndi:DMNEdge>    
