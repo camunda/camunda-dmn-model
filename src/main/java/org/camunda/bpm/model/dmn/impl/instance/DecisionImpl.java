@@ -158,7 +158,7 @@ public class DecisionImpl extends DrgElementImpl implements Decision {
 
   @Override
   public void setVersionTag(String inputVariable) {
-	  camundaVersionTag.setValue(this, inputVariable);
+    camundaVersionTag.setValue(this, inputVariable);
   }
 
   public static void registerType(ModelBuilder modelBuilder) {
@@ -218,12 +218,12 @@ public class DecisionImpl extends DrgElementImpl implements Decision {
     // camunda extensions
 
     camundaHistoryTimeToLiveAttribute = typeBuilder.integerAttribute(CAMUNDA_ATTRIBUTE_HISTORY_TIME_TO_LIVE)
-        .namespace(CAMUNDA_NS)
-        .build();
+      .namespace(CAMUNDA_NS)
+      .build();
     
     camundaVersionTag = typeBuilder.stringAttribute(CAMUNDA_ATTRIBUTE_VERSION_TAG)
-    	.namespace(CAMUNDA_NS)
-    	.build();
+      .namespace(CAMUNDA_NS)
+      .build();
     
 
     typeBuilder.build();
