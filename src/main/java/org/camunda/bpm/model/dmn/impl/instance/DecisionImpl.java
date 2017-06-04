@@ -14,6 +14,7 @@
 package org.camunda.bpm.model.dmn.impl.instance;
 
 import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.CAMUNDA_ATTRIBUTE_HISTORY_TIME_TO_LIVE;
+import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.CAMUNDA_ATTRIBUTE_VERSION_TAG;
 import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.CAMUNDA_NS;
 import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN11_NS;
 import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_ELEMENT_DECISION;
@@ -65,6 +66,7 @@ public class DecisionImpl extends DrgElementImpl implements Decision {
 
   // camunda extensions
   protected static Attribute<Integer> camundaHistoryTimeToLiveAttribute;
+  protected static Attribute<String> camundaVersionTag;
 
   public DecisionImpl(ModelTypeInstanceContext instanceContext) {
     super(instanceContext);
@@ -148,6 +150,16 @@ public class DecisionImpl extends DrgElementImpl implements Decision {
   public void setCamundaHistoryTimeToLive(Integer inputVariable) {
     camundaHistoryTimeToLiveAttribute.setValue(this, inputVariable);
   }
+  
+  @Override
+  public String getVersionTag() {
+    return camundaVersionTag.getValue(this);
+  }
+
+  @Override
+  public void setVersionTag(String inputVariable) {
+    camundaVersionTag.setValue(this, inputVariable);
+  }
 
   public static void registerType(ModelBuilder modelBuilder) {
     ModelElementTypeBuilder typeBuilder = modelBuilder.defineType(Decision.class, DMN_ELEMENT_DECISION)
@@ -206,8 +218,13 @@ public class DecisionImpl extends DrgElementImpl implements Decision {
     // camunda extensions
 
     camundaHistoryTimeToLiveAttribute = typeBuilder.integerAttribute(CAMUNDA_ATTRIBUTE_HISTORY_TIME_TO_LIVE)
-        .namespace(CAMUNDA_NS)
-        .build();
+      .namespace(CAMUNDA_NS)
+      .build();
+    
+    camundaVersionTag = typeBuilder.stringAttribute(CAMUNDA_ATTRIBUTE_VERSION_TAG)
+      .namespace(CAMUNDA_NS)
+      .build();
+    
 
     typeBuilder.build();
   }

@@ -67,6 +67,14 @@ public class CamundaExtensionsTest {
     decision.setCamundaHistoryTimeToLive(6);
     assertThat(decision.getCamundaHistoryTimeToLive()).isEqualTo(6);
   }
+  
+  @Test
+  public void testCamundaVersionTag() {
+    Decision decision = modelInstance.getModelElementById("decision");
+    assertThat(decision.getVersionTag()).isEqualTo("1.0.0");
+    decision.setVersionTag("1.1.0");
+    assertThat(decision.getVersionTag()).isEqualTo("1.1.0");
+  }
 
   @After
   public void validateModel() {
