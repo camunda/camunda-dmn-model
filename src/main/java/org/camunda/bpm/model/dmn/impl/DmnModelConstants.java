@@ -125,6 +125,11 @@ public final class DmnModelConstants {
   public static final String DMN_ELEMENT_USING_TASK = "usingTask";
   public static final String DMN_ELEMENT_VARIABLE = "variable";
 
+  /** DMN schema types */
+
+  public static final String DMN_SCHEMA_TYPE_INPUT_DATA = "tInputData";
+  public static final String DMN_SCHEMA_TYPE_INPUT_DATA_REFERENCE = "tDMNElementReference";
+
   /** DMN attributes */
 
   public static final String DMN_ATTRIBUTE_AGGREGATION = "aggregation";
