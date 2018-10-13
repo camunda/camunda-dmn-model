@@ -81,7 +81,7 @@ public final class DmnModelConstants {
   public static final String DMN_ELEMENT_INPUT = "input";
   public static final String DMN_ELEMENT_INPUT_CLAUSE = "inputClause";
   public static final String DMN_ELEMENT_INPUT_DATA = "inputData";
-  public static final String DMN_ELEMENT_INPUT_DATA_REFERENCE = "inputData";
+  public static final String DMN_ELEMENT_INPUT_DATA_REFERENCE = "inputDataReference";
   public static final String DMN_ELEMENT_INPUT_DECISION_REFERENCE = "inputDecision";
   public static final String DMN_ELEMENT_INPUT_ENTRY = "inputEntry";
   public static final String DMN_ELEMENT_INPUT_EXPRESSION = "inputExpression";
