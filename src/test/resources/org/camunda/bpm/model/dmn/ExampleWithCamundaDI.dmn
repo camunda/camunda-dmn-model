@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions id="dish" name="Dish"    
   namespace="http://camunda.org/schema/1.0/dmn"
-  xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd"
+  xmlns="http://www.omg.org/spec/DMN/20180521/MODEL/"
   xmlns:camunda_xsi="http://camunda.org/schema/1.0/dmn/xsi"
   xmlns:camunda_dmndi="http://camunda.org/schema/1.0/dmn/DMNDI"
   xmlns:camunda_dc="http://camunda.org/schema/1.0/dmn/DC"
