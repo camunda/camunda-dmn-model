@@ -1,4 +1,7 @@
-/* Licensed under the Apache License, Version 2.0 (the "License");
+/*
+ * Copyright © 2015-2018 camunda services GmbH and various authors (info@camunda.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -10,39 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.camunda.bpm.model.dmn.impl.instance;
 
 import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN11_NS;
 import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_ELEMENT_BINDING;
 
-import org.camunda.bpm.model.dmn.instance.Binding;
-import org.camunda.bpm.model.dmn.instance.Expression;
-import org.camunda.bpm.model.dmn.instance.InformationItem;
-import org.camunda.bpm.model.dmn.instance.ParameterReference;
+import org.camunda.bpm.model.dmn.instance.*;
 import org.camunda.bpm.model.xml.ModelBuilder;
 import org.camunda.bpm.model.xml.impl.instance.ModelTypeInstanceContext;
 import org.camunda.bpm.model.xml.type.ModelElementTypeBuilder;
 import org.camunda.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
 import org.camunda.bpm.model.xml.type.child.ChildElement;
 import org.camunda.bpm.model.xml.type.child.SequenceBuilder;
-import org.camunda.bpm.model.xml.type.reference.ElementReference;
 
 public class BindingImpl extends DmnModelElementInstanceImpl implements Binding {
 
-  protected static ElementReference<InformationItem, ParameterReference> parameterRef;
+  protected static ChildElement<Parameter> parameterChild;
   protected static ChildElement<Expression> expressionChild;
 
   public BindingImpl(ModelTypeInstanceContext instanceContext) {
     super(instanceContext);
   }
 
-  public InformationItem getParameter() {
-    return parameterRef.getReferenceTargetElement(this);
+  public Parameter getParameter() {
+    return parameterChild.getChild(this);
   }
 
-  public void setParameter(InformationItem parameter) {
-    parameterRef.setReferenceTargetElement(this, parameter);
+  public void setParameter(Parameter parameter) {
+    parameterChild.setChild(this, parameter);
   }
 
   public Expression getExpression() {
@@ -64,9 +62,8 @@ public class BindingImpl extends DmnModelElementInstanceImpl implements Binding 
 
     SequenceBuilder sequenceBuilder = typeBuilder.sequence();
 
-    parameterRef = sequenceBuilder.element(ParameterReference.class)
+    parameterChild = sequenceBuilder.element(Parameter.class)
       .required()
-      .uriElementReference(InformationItem.class)
       .build();
 
     expressionChild = sequenceBuilder.element(Expression.class)

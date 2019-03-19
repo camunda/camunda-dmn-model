@@ -1,4 +1,7 @@
-/* Licensed under the Apache License, Version 2.0 (the "License");
+/*
+ * Copyright © 2015-2018 camunda services GmbH and various authors (info@camunda.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -10,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.camunda.bpm.model.dmn;
 
 import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN11_ALTERNATIVE_NS;
@@ -88,7 +90,7 @@ import org.camunda.bpm.model.dmn.impl.instance.OutputEntryImpl;
 import org.camunda.bpm.model.dmn.impl.instance.OutputImpl;
 import org.camunda.bpm.model.dmn.impl.instance.OutputValuesImpl;
 import org.camunda.bpm.model.dmn.impl.instance.OwnerReferenceImpl;
-import org.camunda.bpm.model.dmn.impl.instance.ParameterReferenceImpl;
+import org.camunda.bpm.model.dmn.impl.instance.ParameterImpl;
 import org.camunda.bpm.model.dmn.impl.instance.PerformanceIndicatorImpl;
 import org.camunda.bpm.model.dmn.impl.instance.QuestionImpl;
 import org.camunda.bpm.model.dmn.impl.instance.RelationImpl;
@@ -340,7 +342,7 @@ public class Dmn {
     OutputEntryImpl.registerType(modelBuilder);
     OutputValuesImpl.registerType(modelBuilder);
     OwnerReferenceImpl.registerType(modelBuilder);
-    ParameterReferenceImpl.registerType(modelBuilder);
+    ParameterImpl.registerType(modelBuilder);
     PerformanceIndicatorImpl.registerType(modelBuilder);
     QuestionImpl.registerType(modelBuilder);
     RelationImpl.registerType(modelBuilder);

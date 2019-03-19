@@ -1,4 +1,7 @@
-/* Licensed under the Apache License, Version 2.0 (the "License");
+/*
+ * Copyright © 2015-2018 camunda services GmbH and various authors (info@camunda.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -10,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.camunda.bpm.model.dmn.instance;
 
 import java.util.Arrays;
 import java.util.Collection;
+import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.CAMUNDA_NS;
 
 public class DecisionTest extends DmnModelElementInstanceTest {
 
@@ -41,7 +44,10 @@ public class DecisionTest extends DmnModelElementInstanceTest {
   }
 
   public Collection<AttributeAssumption> getAttributesAssumptions() {
-    return null;
+    return Arrays.asList(
+      new AttributeAssumption(CAMUNDA_NS, "versionTag"),
+      new AttributeAssumption(CAMUNDA_NS, "historyTimeToLive")
+    );
   }
 
 }

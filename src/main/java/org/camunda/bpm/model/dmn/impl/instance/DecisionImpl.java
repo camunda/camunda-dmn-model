@@ -1,4 +1,7 @@
-/* Licensed under the Apache License, Version 2.0 (the "License");
+/*
+ * Copyright © 2015-2018 camunda services GmbH and various authors (info@camunda.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -10,9 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.camunda.bpm.model.dmn.impl.instance;
 
+import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.CAMUNDA_ATTRIBUTE_HISTORY_TIME_TO_LIVE;
+import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.CAMUNDA_ATTRIBUTE_VERSION_TAG;
+import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.CAMUNDA_NS;
 import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN11_NS;
 import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_ELEMENT_DECISION;
 
@@ -39,6 +44,7 @@ import org.camunda.bpm.model.xml.ModelBuilder;
 import org.camunda.bpm.model.xml.impl.instance.ModelTypeInstanceContext;
 import org.camunda.bpm.model.xml.type.ModelElementTypeBuilder;
 import org.camunda.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
+import org.camunda.bpm.model.xml.type.attribute.Attribute;
 import org.camunda.bpm.model.xml.type.child.ChildElement;
 import org.camunda.bpm.model.xml.type.child.ChildElementCollection;
 import org.camunda.bpm.model.xml.type.child.SequenceBuilder;
@@ -59,6 +65,10 @@ public class DecisionImpl extends DrgElementImpl implements Decision {
   protected static ChildElementCollection<UsingProcessReference> usingProcessCollection;
   protected static ChildElementCollection<UsingTaskReference> usingTaskCollection;
   protected static ChildElement<Expression> expressionChild;
+
+  // camunda extensions
+  protected static Attribute<String> camundaHistoryTimeToLiveAttribute;
+  protected static Attribute<String> camundaVersionTag;
 
   public DecisionImpl(ModelTypeInstanceContext instanceContext) {
     super(instanceContext);
@@ -132,6 +142,42 @@ public class DecisionImpl extends DrgElementImpl implements Decision {
     expressionChild.setChild(this, expression);
   }
 
+  // camunda extensions
+  @Override
+  public Integer getCamundaHistoryTimeToLive() {
+    String ttl = getCamundaHistoryTimeToLiveString();
+
+    if (ttl != null) {
+      return Integer.valueOf(ttl);
+    }
+    return null;
+  }
+
+  @Override
+  public void setCamundaHistoryTimeToLive(Integer historyTimeToLive) {
+    setCamundaHistoryTimeToLiveString(String.valueOf(historyTimeToLive));
+  }
+
+  @Override
+  public String getCamundaHistoryTimeToLiveString() {
+    return camundaHistoryTimeToLiveAttribute.getValue(this);
+  }
+
+  @Override
+  public void setCamundaHistoryTimeToLiveString(String historyTimeToLive) {
+    camundaHistoryTimeToLiveAttribute.setValue(this, historyTimeToLive);
+  }
+
+  @Override
+  public String getVersionTag() {
+    return camundaVersionTag.getValue(this);
+  }
+
+  @Override
+  public void setVersionTag(String inputVariable) {
+    camundaVersionTag.setValue(this, inputVariable);
+  }
+
   public static void registerType(ModelBuilder modelBuilder) {
     ModelElementTypeBuilder typeBuilder = modelBuilder.defineType(Decision.class, DMN_ELEMENT_DECISION)
       .namespaceUri(DMN11_NS)
@@ -184,6 +230,16 @@ public class DecisionImpl extends DrgElementImpl implements Decision {
       .build();
 
     expressionChild = sequenceBuilder.element(Expression.class)
+      .build();
+
+    // camunda extensions
+
+    camundaHistoryTimeToLiveAttribute = typeBuilder.stringAttribute(CAMUNDA_ATTRIBUTE_HISTORY_TIME_TO_LIVE)
+        .namespace(CAMUNDA_NS)
+        .build();
+
+    camundaVersionTag = typeBuilder.stringAttribute(CAMUNDA_ATTRIBUTE_VERSION_TAG)
+      .namespace(CAMUNDA_NS)
       .build();
 
     typeBuilder.build();

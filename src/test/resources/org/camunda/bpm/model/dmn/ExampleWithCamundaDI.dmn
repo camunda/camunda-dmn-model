@@ -2,55 +2,8 @@
 <definitions id="dish" name="Dish"    
   namespace="http://camunda.org/schema/1.0/dmn"
   xmlns="http://www.omg.org/spec/DMN/20180521/MODEL/"
-  xmlns:camunda_xsi="http://camunda.org/schema/1.0/dmn/xsi"
-  xmlns:camunda_dmndi="http://camunda.org/schema/1.0/dmn/DMNDI"
-  xmlns:camunda_dc="http://camunda.org/schema/1.0/dmn/DC"
-  xmlns:camunda_di="http://camunda.org/schema/1.0/dmn/DI">
-  
-  <extensionElements>
-    <camunda_dmndi:DMNDI>
-      <camunda_dmndi:DMNDiagram id="_di1">
-        <camunda_dmndi:DMNShape id="_di2" dmnElementRef="dish">
-          <camunda_dc:Bounds x="150" y="10" width="100" height="55" />
-        </camunda_dmndi:DMNShape>
-        <camunda_dmndi:DMNShape id="_di3" dmnElementRef="season">
-          <camunda_dc:Bounds x="10" y="140" width="140" height="55" />
-        </camunda_dmndi:DMNShape>
-        <camunda_dmndi:DMNShape id="_di4" dmnElementRef="guestCount">
-          <camunda_dc:Bounds x="230" y="140" width="210" height="55" />
-        </camunda_dmndi:DMNShape>
-        <camunda_dmndi:DMNShape id="_di5" dmnElementRef="temperature_id">
-          <camunda_dc:Bounds x="5" y="270" width="170" height="90" />
-        </camunda_dmndi:DMNShape>
-        <camunda_dmndi:DMNShape id="_di6" dmnElementRef="dayType_id">
-          <camunda_dc:Bounds x="240" y="270" width="200" height="60" />
-        </camunda_dmndi:DMNShape>
-        <camunda_dmndi:DMNShape id="_di7" dmnElementRef="host_ks">
-          <camunda_dc:Bounds x="495" y="10" width="120" height="75" />
-        </camunda_dmndi:DMNShape>
-        <camunda_dmndi:DMNEdge id="_di8" sourceDMNElementRef="season" targetDMNElementRef="dish">
-          <camunda_di:waypoint camunda_xsi:type="camunda_dc:Point" x="80" y="140" />
-          <camunda_di:waypoint camunda_xsi:type="camunda_dc:Point" x="205" y="65" />
-        </camunda_dmndi:DMNEdge>
-        <camunda_dmndi:DMNEdge id="_di9" sourceDMNElementRef="guestCount" targetDMNElementRef="dish">
-          <camunda_di:waypoint camunda_xsi:type="camunda_dc:Point" x="345" y="140" />
-          <camunda_di:waypoint camunda_xsi:type="camunda_dc:Point" x="205" y="65" />
-        </camunda_dmndi:DMNEdge>
-        <camunda_dmndi:DMNEdge id="_di10" sourceDMNElementRef="temperature_id" targetDMNElementRef="season">
-          <camunda_di:waypoint camunda_xsi:type="camunda_dc:Point" x="80" y="270" />
-          <camunda_di:waypoint camunda_xsi:type="camunda_dc:Point" x="80" y="195" />
-        </camunda_dmndi:DMNEdge>
-        <camunda_dmndi:DMNEdge id="_di11" sourceDMNElementRef="dayType_id" targetDMNElementRef="guestCount">
-          <camunda_di:waypoint camunda_xsi:type="camunda_dc:Point" x="340" y="270" />
-          <camunda_di:waypoint camunda_xsi:type="camunda_dc:Point" x="340" y="195" />
-        </camunda_dmndi:DMNEdge>
-        <camunda_dmndi:DMNEdge id="_di12" sourceDMNElementRef="host_ks" targetDMNElementRef="dish">
-          <camunda_di:waypoint camunda_xsi:type="camunda_dc:Point" x="495" y="30" />
-          <camunda_di:waypoint camunda_xsi:type="camunda_dc:Point" x="250" y="30" />
-        </camunda_dmndi:DMNEdge>    
-      </camunda_dmndi:DMNDiagram>
-    </camunda_dmndi:DMNDI>
-  </extensionElements>
+  xmlns:camunda="http://camunda.org/schema/1.0/dmn"
+  xmlns:biodi="http://bpmn.io/ns/di">
   
   <inputData name="Type of day" id="dayType_id">
     <variable typeRef="string" name="Type of day" id="dayType_ii"/>

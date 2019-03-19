@@ -15,23 +15,20 @@
  */
 package org.camunda.bpm.model.dmn.instance;
 
-import java.util.Arrays;
 import java.util.Collection;
 
-public class ContextTest extends DmnModelElementInstanceTest {
+public class ParameterTest extends DmnModelElementInstanceTest {
 
-  public TypeAssumption getTypeAssumption() {
-    return new TypeAssumption(Expression.class, false);
-  }
+	public TypeAssumption getTypeAssumption() {
+		return new TypeAssumption(InformationItem.class, false);
+	}
 
-  public Collection<ChildElementAssumption> getChildElementAssumptions() {
-    return Arrays.asList(
-      new ChildElementAssumption(ContextEntry.class)
-    );
-  }
+	public Collection<ChildElementAssumption> getChildElementAssumptions() {
+		return null;
+	}
 
-  public Collection<AttributeAssumption> getAttributesAssumptions() {
-    return null;
-  }
+	public Collection<AttributeAssumption> getAttributesAssumptions() {
+		return null;
+	}
 
 }
