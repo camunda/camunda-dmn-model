@@ -46,7 +46,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
-public class ExampleTestCompatibility extends DmnModelTest {
+public class ExampleTestCompatibilityTest extends DmnModelTest {
 
   public static final String EXAMPLE_DMN = "org/camunda/bpm/model/dmn/Example.dmn";
 
@@ -55,13 +55,13 @@ public class ExampleTestCompatibility extends DmnModelTest {
    @Parameterized.Parameters(name="Namespace: {0}")
    public static Collection<Object[]> parameters(){
      return Arrays.asList(new Object[][]{
-         {Dmn.readModelFromStream(ExampleTestCompatibility.class.getResourceAsStream("Example.dmn"))},
+         {Dmn.readModelFromStream(ExampleTestCompatibilityTest.class.getResourceAsStream("Example.dmn"))},
          // for compatibility reasons we gotta check the old namespace, too
-         {Dmn.readModelFromStream(ExampleTestCompatibility.class.getResourceAsStream("ExampleCompatibility.dmn"))}
+         {Dmn.readModelFromStream(ExampleTestCompatibilityTest.class.getResourceAsStream("ExampleCompatibility.dmn"))},
      });
    }
 
-  public ExampleTestCompatibility(DmnModelInstance originalModelInstance) {
+  public ExampleTestCompatibilityTest(DmnModelInstance originalModelInstance) {
     this.originalModelInstance = originalModelInstance;
   }  
   
