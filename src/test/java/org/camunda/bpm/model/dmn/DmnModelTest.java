@@ -16,9 +16,9 @@
 package org.camunda.bpm.model.dmn;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
 
 import java.io.File;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -28,13 +28,14 @@ import org.camunda.bpm.model.dmn.instance.NamedElement;
 import org.camunda.bpm.model.dmn.util.ParseDmnModelRule;
 import org.camunda.bpm.model.xml.impl.util.ReflectUtil;
 import org.camunda.bpm.model.xml.instance.ModelElementInstance;
-import org.custommonkey.xmlunit.DetailedDiff;
-import org.custommonkey.xmlunit.Diff;
-import org.custommonkey.xmlunit.examples.RecursiveElementNameAndTextQualifier;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 import org.w3c.dom.Document;
+import org.xmlunit.builder.DiffBuilder;
+import org.xmlunit.diff.Diff;
+import org.xmlunit.diff.DifferenceEvaluators;
 
 public abstract class DmnModelTest {
 
@@ -99,13 +100,20 @@ public abstract class DmnModelTest {
     Document actualDocument = docBuilder.parse(actualFile);
     Document expectedDocument = docBuilder.parse(expectedFile);
 
-    Diff diff = new Diff(expectedDocument, actualDocument);
-    if (!diff.similar()) {
-      diff.overrideElementQualifier(new RecursiveElementNameAndTextQualifier());
-      DetailedDiff detailedDiff = new DetailedDiff(diff);
-      String failMsg = "XML differs:\n" + detailedDiff.getAllDifferences() + "\n\nActual XML:\n" + Dmn.convertToString(modelInstance);
-      fail(failMsg);
-    }
+    Diff diff = DiffBuilder.compare(expectedDocument).withTest(actualDocument)
+    	.withDifferenceEvaluator(
+    			DifferenceEvaluators.chain(DifferenceEvaluators.Default,
+                new Java9CDataIndentationDifferenceEvaluator()))
+		.checkForSimilar()
+		.build();
+    Assert.assertFalse(diff.toString(), diff.hasDifferences());
+//    Diff diff = new Diff(expectedDocument, actualDocument);
+//    if (!diff.similar()) {
+//      diff.overrideElementQualifier(new RecursiveElementNameAndTextQualifier());
+//      DetailedDiff detailedDiff = new DetailedDiff(diff);
+//      String failMsg = "XML differs:\n" + detailedDiff.getAllDifferences() + "\n\nActual XML:\n" + Dmn.convertToString(modelInstance);
+//      fail(failMsg);
+//    }
   }
 
   protected void assertElementIsEqualToId(DmnModelElementInstance actualElement, String id) {
