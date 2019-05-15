@@ -18,7 +18,11 @@ public class Java9CDataIndentationDifferenceEvaluator implements DifferenceEvalu
 		// TODO implement a similar comparison for the text node itself
         final Node controlNode = comparison.getControlDetails().getTarget();
         final Node testNode = comparison.getTestDetails().getTarget();
-        if (controlNode != null && testNode != null) {
+        return testForJava9CDataIndentation(outcome, controlNode, testNode);
+    }
+
+	private ComparisonResult testForJava9CDataIndentation(ComparisonResult outcome, final Node controlNode, final Node testNode) {
+		if (controlNode != null && testNode != null) {
 	        final NodeList controlChildNodes = controlNode.getChildNodes();
 	        final NodeList testChildNodes = testNode.getChildNodes();
 			if (controlChildNodes.getLength() == 1
@@ -37,15 +41,23 @@ public class Java9CDataIndentationDifferenceEvaluator implements DifferenceEvalu
 					Text testTextAfter = (Text) testChildNode2;
 					if (Pattern.matches("\\A[ \\n\\t\\r]+\\z", testTextBefore.getData())
 			        	&& Pattern.matches("\\A[ \\n\\t\\r]+\\z", testTextAfter.getData())
-			        	&& ((CDATASection) ctrlChildNode).getData().equals(((CDATASection) testChildNode1).getData())
+			        	&& ctrlCdataSection.getData().equals(testCdataSection.getData())
 			        	) {
-	        	
 	                    return ComparisonResult.SIMILAR;
 					}
 	        	}
+	        } else if (controlChildNodes.getLength() == 0
+		        	&& testChildNodes.getLength() == 0
+		        	&& controlNode instanceof CDATASection
+		        	&& testNode instanceof Text) {
+				CDATASection ctrlCdataSection = (CDATASection) controlNode;
+				Text testTextBefore = (Text) testNode;
+				if (Pattern.matches("\\A[ \\n\\t\\r]+\\z", testTextBefore.getData())) {
+					return testForJava9CDataIndentation(outcome, ctrlCdataSection.getParentNode(), testTextBefore.getParentNode());
+				}
 	        }
         }
         return outcome;
-    }
+	}
 
 }
