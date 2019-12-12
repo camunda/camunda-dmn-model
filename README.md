@@ -1,9 +1,9 @@
-camunda-dmn-model
-==================
+## This project has been migrated
 
-DMN 1.1 model API written in Java.
+The `camunda-dmn-model` repository has been merged with the `camunda-bpm-platform` project. The
+source files can be found [here](https://github.com/camunda/camunda-bpm-platform/tree/master/model-api/dmn-model).
 
-Used DMN 1.1 Schema: [DMN11.xsd](src/main/resources/DMN11.xsd)
+Please submit any future contributions to the source files to the `camunda-bpm-platform` repository.
 
 ## License
 The source files in this repository are made available under the [Apache License Version 2.0](./LICENSE).
